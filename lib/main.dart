@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:transformexample/transformcalss.dart';
+import 'package:vector_math/vector_math_64.dart';
 
 void main() {
   runApp(const MyApp());
@@ -81,58 +81,33 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
 
-            Stack(
-              children: [
-                Transform(
-                  transform: Matrix4.skewX(pi / 4),
-                  child: Transformcalss(
-                    imageName: "assets/flower4.jpg",
-                  ),
-                ),
-                Transform(
-                  transform: Matrix4.skewY(pi / 4),
-                  child: Transformcalss(
-                    imageName: "assets/flower5.jpg",
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            // Transform(
-            //   transform: Matrix4.skewX(pi / 4),
-            //   child: Transformcalss(
-            //     imageName: "assets/flower5.jpg",
-            //   ),
-            // ),
-            // Transform(
-            //   transform: Matrix4.skewY(pi / 4),
-            //   child: Transformcalss(
-            //     imageName: "assets/flower4.jpg",
-            //   ),
-            // )
-            // Transform.translate(
-            //   offset: Offset(10, 40),
-            //   child: Transformcalss(
-            //     imageName: "assets/flower5.jpg",
-            //   ),
-            // ),
-            // Transform.flip(
-            //   flipY: true,
-            //   child: Transformcalss(
-            //     imageName: "assets/flower5.jpg",
-            //   ),
-            // ),
-            // AnimatedContainer(
-            //   // duration: Durations.long1,
-            //   child: Transform.scale(
-            //     scale: 1,
-            //     child: Transformcalss(
-            //       imageName: "assets/flower5.jpg",
+            // Stack(
+            //   children: [
+            //     Transform(
+            //       transform: Matrix4.skewX(pi / 4),
+            //       child: Transformcalss(
+            //         imageName: "assets/flower4.jpg",
+            //       ),
             //     ),
-            //   ),
-            // )
+            //     Transform(
+            //       transform: Matrix4.skewY(pi / 4),
+            //       child: Transformcalss(
+            //         imageName: "assets/flower5.jpg",
+            //       ),
+            //     )
+            //   ],
+            // ),
+            Transform(
+              transform: Matrix4.columns(
+                Vector4(1.0, 0.0, 0.0, 0.0), // First column (scale X)
+                Vector4(0.0, 1.0, 0.0, 0.0), // Second column (scale Y)
+                Vector4(0.0, 0.0, 1.0, 0.0), // Third column (scale Z)
+                Vector4(50.0, 50.0, 0.0, 1.0),
+              ),
+              child: Transformcalss(
+                imageName: "assets/flower4.jpg",
+              ),
+            )
           ],
         ),
       ),
